@@ -20,7 +20,6 @@ class PacienteManager(ttk.Frame):
         self.entry_name = ttk.Entry(self.field_data_fr, width=40)
         self.entry_name.pack(side='left')
 
-
         self.lbl_rg = ttk.Label(self.field_data_fr, text='RG:')
         self.lbl_rg.pack(side='left')
         self.entry_rg = ttk.Entry(self.field_data_fr, width=15)
@@ -30,6 +29,10 @@ class PacienteManager(ttk.Frame):
         self.lbl_sus.pack(side='left')
         self.entry_sus = ttk.Entry(self.field_data_fr, width=16)
         self.entry_sus.pack(side='left')
+
+        self.pac_tvw = ttk.Treeview(self.mainframe)
+        self.pac_tvw.pack()
+
 
 if __name__ == "__main__":
     def main():
