@@ -13,7 +13,7 @@ class PacienteAdd(ttk.Frame):
         self.addwin = addwin
         self.addwin.title("Adicionar Paciente")
 
-        #self.window_geometry(300,100)
+        #self.window_geometry(300,200)
         self.create_frames()
         self.create_entries()
         self.create_buttons()
