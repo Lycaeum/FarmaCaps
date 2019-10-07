@@ -1,5 +1,8 @@
 import tkinter as tk
 import tkinter.ttk as ttk
+import sys
+sys.path.append('../database/')
+from pac_db import PacientesDB
 from pac_add import PacienteAdd
 
 class PacienteManager(ttk.Frame):
@@ -35,6 +38,13 @@ class PacienteManager(ttk.Frame):
         self.but_fr.configure(labelanchor="n")
         self.but_fr.pack()
 
+        self.but_fr = ttk.Frame(self.mainframe)
+        self.but_fr.pack(pady=8)
+        self.buttons_left_int_fr = ttk.Frame(self.but_fr)
+        self.buttons_left_int_fr.pack(side='left')
+        self.buttons_right_int_fr = ttk.Frame(self.but_fr)
+        self.buttons_right_int_fr.pack(side='left')
+
     def create_entries(self):
         """ Creates Entry Fields """
         self.lbl_name = ttk.Label(self.field_data_fr)
@@ -62,23 +72,32 @@ class PacienteManager(ttk.Frame):
 
     def create_buttons(self):
         """."""
-        sair_button = ttk.Button(self.but_fr)
-        sair_button.configure(text="Sair", width=10)
-        sair_button.bind("<Button-1>", self.quit)
-        sair_button.pack(padx=2, side="left")
+        self.sair_button = ttk.Button(self.buttons_right_int_fr)
+        self.sair_button.configure(text="Sair", width=10)
+        self.sair_button.bind("<Button-1>", self.quit)
+        self.sair_button.pack(padx=2, side="left")
 
-        alter_button = ttk.Button(self.but_fr)
-        alter_button.configure(text="Alterar", width=10)
-        alter_button.pack(padx=2, side="left")
+        self.alter_button = ttk.Button(self.buttons_right_int_fr)
+        self.alter_button.configure(text="Alterar", width=10)
+        self.alter_button.pack(padx=2, side="left")
 
-        delete_button = ttk.Button(self.but_fr)
-        delete_button.configure(text="Deletar", width=10)
-        delete_button.pack(padx=2, side="left")
+        self.delete_button = ttk.Button(self.buttons_right_int_fr)
+        self.delete_button.configure(text="Deletar", width=10)
+        self.delete_button.pack(padx=2, side="left")
 
-        add_button = ttk.Button(self.but_fr)
-        add_button.configure(text="Adicionar", width=10)
-        add_button.bind("<Button-1>", self.paciente_add)
-        add_button.pack(padx=2, side="left")
+        self.add_button = ttk.Button(self.buttons_right_int_fr)
+        self.add_button.configure(text="Adicionar", width=10)
+        self.add_button.bind("<Button-1>", self.paciente_add)
+        self.add_button.pack(padx=2, side="left")
+
+        self.createdb_button = ttk.Button(self.buttons_left_int_fr)
+        self.createdb_button.configure(text="Criar DB", width=10)
+        self.createdb_button.bind("<Button-1>", self.create_db)
+        self.createdb_button.pack(padx=2, side="left")
+
+    def create_db(self, event):
+        """..."""
+
 
     def paciente_add(self, event):
         """..."""

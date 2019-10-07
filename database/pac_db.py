@@ -22,9 +22,13 @@ class PacientesDB:
 
     # <<--------------- Metodos da classe PacientesDB --------------->>
 
+
+
     # ----- Metodos de Gerenciamento -----
     def create_db(self):
         """ Criar nova Database """
+        self.pacdb = sqlite3.connect('pacientes.db')
+        self.pacdb_cursor = self.pacdb.cursor()
         self.pacdb_create = """ CREATE TABLE IF NOT EXISTS pacientes(
                                 id      AUTO INCREMENT KEY
                                 nome    TEXT(40) NOT NULL,
@@ -33,10 +37,17 @@ class PacientesDB:
                             """
         self.pacdb_cursor.execute(self.pacdb_create)
 
-    def add_paciente(self):
+    def add_paciente(self, _name, _rg, _sus):
         """ Inserir Cadastro depaciente """
+        self._name = _name
+        self._rg = _rg
+        self._sus = _sus
+
+        self.pacdb = sqlite3.connect('pacientes.db')
+        self.pacdb_cursor = self.pacdb.cursor()
+
         self.pacdb_insert = """ INSERT INTO pacientes(nome,rg,sus)
-                                VALUES(?,?,?))
+                                VALUES(?,?,?)
                             """, (self._name, self._rg, self._sus)
         self.pacdb_cursor.execute(self.pacdb_insert)
         self.pacdb.commit()
